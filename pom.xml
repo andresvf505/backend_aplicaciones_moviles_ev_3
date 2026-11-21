@@ -16,6 +16,7 @@
 	<description>Microservicio unico del Huerto Escolar: usuarios, sectores, cultivos, sensores simulados, tareas y reportes</description>
 	<properties>
 		<java.version>21</java.version>
+		<kover.version>0.9.8</kover.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -43,6 +44,68 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!--
+			  Cobertura de las pruebas con Kover (herramienta de JetBrains).
+			  mvnw verify -> corre las pruebas, genera el informe en
+			                 target/site/kover/html/index.html y falla si la
+			                 cobertura de lineas baja del 90 %
+			-->
+			<plugin>
+				<groupId>org.jetbrains.kotlinx</groupId>
+				<artifactId>kover-maven-plugin</artifactId>
+				<version>${kover.version}</version>
+				<executions>
+					<!-- Mide que codigo se ejecuta durante las pruebas -->
+					<execution>
+						<id>instrumentacion</id>
+						<goals>
+							<goal>instrumentation</goal>
+						</goals>
+					</execution>
+					<!-- Informe HTML (fase verify) -->
+					<execution>
+						<id>informe-html</id>
+						<goals>
+							<goal>report-html</goal>
+						</goals>
+					</execution>
+					<!-- Informe XML (fase verify) -->
+					<execution>
+						<id>informe-xml</id>
+						<goals>
+							<goal>report-xml</goal>
+						</goals>
+					</execution>
+					<!-- Revisa la regla del 90 % (fase verify) -->
+					<execution>
+						<id>minimo-90</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<filters>
+						<excludes>
+							<!-- Solo arranca Spring: no tiene logica que probar -->
+							<classes>cl.duoc.huerto.MsHuertoEscolarApplication</classes>
+						</excludes>
+					</filters>
+					<rules>
+						<rule>
+							<name>Cobertura minima de lineas</name>
+							<groupBy>APPLICATION</groupBy>
+							<bounds>
+								<bound>
+									<aggregationForGroup>COVERED_PERCENTAGE</aggregationForGroup>
+									<coverageUnits>LINE</coverageUnits>
+									<minValue>90</minValue>
+								</bound>
+							</bounds>
+						</rule>
+					</rules>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

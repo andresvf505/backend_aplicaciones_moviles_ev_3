@@ -66,3 +66,16 @@ Pruebas rápidas desde el navegador o Postman:
 
 Ejemplo de login con Postman: `POST http://localhost:8080/usuarios/login` con el cuerpo
 `{"identificador": "profe.ana", "clave": "huerto123"}`.
+
+## Pruebas unitarias y cobertura
+
+JUnit 5 + Mockito (sin base de datos: los repositorios se simulan) y **Kover** para la cobertura:
+
+En IntelliJ: panel **Maven** (barra derecha) → **Lifecycle** → doble clic en **verify**.
+O desde la terminal de IntelliJ:
+
+```
+.\mvnw.cmd verify   # pruebas + informe Kover + falla si la cobertura baja del 90 %
+```
+
+Informe de cobertura: `target/site/kover/html/index.html` (se genera al terminar **verify**).
