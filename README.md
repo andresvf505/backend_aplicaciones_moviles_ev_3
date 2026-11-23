@@ -1,7 +1,7 @@
 # Huerto Escolar: backend (`ms-huerto-escolar`)
 
 Microservicio que usa la app Android del proyecto **Huerto Escolar**. La app está en otra
-carpeta, **`huerto_escolar_frontend`**, y se abre en Android Studio.
+carpeta, **`apps_moviles_segundaEntrega`**, y se abre en Android Studio.
 
 Repositorios en GitHub:
 - Backend (este): https://github.com/andresvf505/backend_aplicaciones_moviles_ev_3.git
@@ -50,11 +50,11 @@ src/main/java/cl/duoc/huerto/
 
 1. XAMPP → **Start** en MySQL (puerto 3306). La base `huerto_escolar` se crea sola.
    Si su MySQL tiene contraseña, escríbanla en `src/main/resources/application.properties`.
-2. IntelliJ IDEA → *File > Open* → esta carpeta (`huerto_escolar_backend`) → *Trust Project*.
+2. IntelliJ IDEA → *File > Open* → esta carpeta (`backend_aplicaciones_moviles_ev_3`) → *Trust Project*.
 3. *File > Project Structure > SDK* → **JDK 21**.
 4. Abrir `src/main/java/cl/duoc/huerto/MsHuertoEscolarApplication.java` y presionar ▶.
    Esperar `Tomcat started on port 8080` y dejarlo corriendo.
-5. Abrir la app en Android Studio (carpeta `huerto_escolar_frontend`) y ejecutarla en el emulador.
+5. Abrir la app en Android Studio (carpeta `apps_moviles_segundaEntrega`) y ejecutarla en el emulador.
 
 Cuentas de prueba (contraseña `huerto123`): `profe.ana`, `taller.luis`, `est.camila`,
 `est.benjamin`, `est.martina`.
